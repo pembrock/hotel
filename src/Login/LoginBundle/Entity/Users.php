@@ -10,7 +10,7 @@ class Users
     /**
      * @var string
      */
-    private $login = '0';
+    private $email = '0';
 
     /**
      * @var string
@@ -29,27 +29,27 @@ class Users
 
 
     /**
-     * Set login
+     * Set email
      *
-     * @param string $login
+     * @param string $email
      *
      * @return Users
      */
-    public function setLogin($login)
+    public function setEmail($email)
     {
-        $this->login = $login;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get login
+     * Get email
      *
      * @return string
      */
-    public function getLogin()
+    public function getEmail()
     {
-        return $this->login;
+        return $this->email;
     }
 
     /**
@@ -109,4 +109,5 @@ class Users
     {
         return $this->id;
     }
+
 }

@@ -1,3 +1,11 @@
 login_login_homepage:
     path:     /login
     defaults: { _controller: LoginLoginBundle:Default:index }
+
+login_login_logout:
+    path:     /logout
+    defaults: { _controller: LoginLoginBundle:Default:logout }
+
+admin_admin_homepage:
+    path:     /admin
+    defaults: { _controller: LoginLoginBundle:Admin:index}
