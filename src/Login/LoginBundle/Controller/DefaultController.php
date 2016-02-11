@@ -22,6 +22,8 @@ class DefaultController extends Controller {
                 $newUser->setLogin("pembrock@gmail.com");
                 $newUser->setPassword(md5("12345"));
                 $newUser->setName("Pembrock");
+                $em->persist($newUser);
+                $em->flush();
                 
                 return $this->render('LoginLoginBundle:Pages:login.html.twig', array('name' => $user->getName()));
             }
