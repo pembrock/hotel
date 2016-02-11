@@ -18,8 +18,14 @@ class DefaultController extends Controller {
             $repository = $em->getRepository('LoginLoginBundle:Users');
             $user = $repository->findOneBy(array('login' => $login, 'password' => $password));
             if ($user) {
+                $newUser = new Users();
+                $newUser->setLogin("pembrock@gmail.com");
+                $newUser->setPassword(md5("12345"));
+                $newUser->setName("Pembrock");
+                
                 return $this->render('LoginLoginBundle:Pages:login.html.twig', array('name' => $user->getName()));
             }
+                return $this->render('LoginLoginBundle:Pages:login.html.twig');
         } else {
             return $this->render('LoginLoginBundle:Pages:login.html.twig');
         }
