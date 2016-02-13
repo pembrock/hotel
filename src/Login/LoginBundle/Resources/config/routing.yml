@@ -9,3 +9,14 @@ login_login_logout:
 admin_admin_homepage:
     path:     /admin
     defaults: { _controller: LoginLoginBundle:Admin:index}
+
+
+admin_admin_hotels_edit:
+    path:     /admin/hotels/{id}
+    defaults: { _controller: LoginLoginBundle:Admin:edit}
+    requirements:
+        id: \d+
+
+admin_admin_hotels_save:
+    path:       /admin/hotels
+    defaults:   { _controller: LoginLoginBundle:Admin:save}
