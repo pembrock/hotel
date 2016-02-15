@@ -1,50 +1,82 @@
 {% extends "LoginLoginBundle:Pages:index.html.twig" %}
 {% block content %}
-      <div class="col-md-12">
+    <div class="col-md-12">
         <div class="box">
-          <div class="box-header">
-            <h3 class="box-title">Гостиницы</h3>
-              <a href="{{ path('admin_admin_hotels_edit', {'id': 0}) }}" title="Добавить" class="btn btn-success pull-right">
-                <i class="fa fa-plus"></i>
-              </a>
-          </div>
-          {#<div class="box-body no-padding">#}
-            {#<table class="table">#}
-              {#{% for value in hotels %}#}
-              {#<tr>#}
-                {#<td style="width: 10px">{{ loop.index }}.</td>#}
-                {#<td><a href="{{ path('admin_admin_hotels_edit', {'id':value.id}) }}">{{ value.title }}</a></td>#}
-                {#<td style="width: 10px">#}
-                  {#<a href="{{ path('admin_admin_hotels_edit', {'id': value.id}) }}" type="button" class="btn btn-block btn-primary">Редактировать</a>#}
-                {#</td>#}
-                {#<td style="width: 10px"><a href="#" type="button" class="btn btn-block btn-danger">Удалить</a></td>#}
-              {#</tr>#}
-              {#{% endfor %}#}
-            {#</table>#}
-          {#</div>#}
-          <div class="box box-primary">
-            <div class="box-body">
-              <ul class="todo-list ui-sortable">
-                {% for value in hotels %}
-                <li>
-                      <span class="handle ui-sortable-handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <span class="text"><a href="{{ path('admin_admin_hotels_edit', {'id':value.id}) }}">{{ value.title }}</a></span>
-                  <div class="tools">
-                    <a href="{{ path('admin_admin_hotels_edit', {'id': value.id}) }}" ><i class="fa fa-edit"></i></a>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                {% endfor %}
-              </ul>
+            <div class="box-header">
+                <h3 class="box-title">Гостиницы</h3>
+                <a href="{{ path('admin_admin_hotels_edit', {'id': 0}) }}" title="Добавить" class="btn btn-success pull-right">
+                    <i class="fa fa-plus"></i>
+                </a>
             </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix no-border">
-              <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+            <div class="box-body no-padding">
+                <table class="table">
+                    {% for value in hotels %}
+                        <tr>
+                            <td style="width: 10px">{{ loop.index }}.</td>
+                            <td><a href="{{ path('admin_admin_hotels_edit', {'id':value.id}) }}">{{ value.title }}</a></td>
+                            <td style="width: 10px">
+                                <a href="{{ path('admin_admin_hotels_edit', {'id': value.id}) }}" type="button" class="btn btn-block btn-primary">Редактировать</a>
+                            </td>
+                            <td style="width: 10px">
+                                {#<a href="{{ path('admin_admin_hotels_del', {'id': value.id}) }}" type="button" class="btn btn-block btn-danger">Удалить</a>#}
+                                <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#myModal" data-whatever="{{ value.id }}">
+                                    Удалить
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
             </div>
-          </div>
+            {#<div class="box box-primary">
+              <div class="box-body">
+                <ul class="todo-list ui-sortable">
+                  {% for value in hotels %}
+                  <li>
+                        <span class="handle ui-sortable-handle">
+                          <i class="fa fa-ellipsis-v"></i>
+                          <i class="fa fa-ellipsis-v"></i>
+                        </span>
+                    <span class="text"><a href="{{ path('admin_admin_hotels_edit', {'id':value.id}) }}">{{ value.title }}</a></span>
+                    <div class="tools">
+                      <a href="{{ path('admin_admin_hotels_edit', {'id': value.id}) }}" ><i class="fa fa-edit"></i></a>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer clearfix no-border">
+                <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+              </div>
+            </div>#}
         </div>
-      </div>
-    {% endblock %}
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Удаление</h4>
+                </div>
+                <div class="modal-body">
+                    Вы действительно хотите удалить выбранный отель?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <a href="" type="button" class="del-link btn btn-danger">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>      
+    <script type="text/javascript">
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var recipient = button.data('whatever');
+            var modal = $(this);
+            modal.find('.del-link').attr('href', "{{ path('admin_admin_hotels_del', {'id': 5}) }}");
+            //modal.find('.modal-body input').val(recipient)
+        });
+    </script>
+{% endblock %}

@@ -20,3 +20,9 @@ admin_admin_hotels_edit:
 admin_admin_hotels_save:
     path:       /admin/hotels
     defaults:   { _controller: LoginLoginBundle:Admin:save}
+
+admin_admin_hotels_del:
+    path:       /admin/hotels/del/{id}
+    defaults:   { _controller: LoginLoginBundle:Admin:del}
+    requirements:
+        id: \d+
