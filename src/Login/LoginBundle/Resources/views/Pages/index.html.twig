@@ -266,13 +266,13 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
 
-                <li class="active">
+                <li {% if menu_selected|default('home') == 'home' %}class="active"{% endif %}>
                     <a href="{{ path('admin_admin_homepage') }}">
                         <i class="fa fa-home"></i> <span>Гостиницы</span>
                     </a>
                 </li>
-                <li>
-                    <a href="pages/widgets.html">
+                <li {% if menu_selected == 'rooms' %}class="active"{% endif %}>
+                    <a href="{{ path('admin_admin_rooms') }}">
                         <i class="fa fa-bed"></i> <span>Номера</span>
                     </a>
                 </li>

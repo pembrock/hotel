@@ -3,9 +3,9 @@
 namespace Login\LoginBundle\Entity;
 
 /**
- * Hotel
+ * Rooms
  */
-class Hotel
+class Rooms
 {
     /**
      * @var string
@@ -18,14 +18,19 @@ class Hotel
     private $description;
 
     /**
-     * @var string
+     * @var integer
      */
-    private $logo;
+    private $seatsCout = '0';
+
+    /**
+     * @var boolean
+     */
+    private $isactive = '0';
 
     /**
      * @var integer
      */
-    private $orderby;
+    private $orderby = '0';
 
     /**
      * @var integer
@@ -38,7 +43,7 @@ class Hotel
      *
      * @param string $title
      *
-     * @return Hotel
+     * @return Rooms
      */
     public function setTitle($title)
     {
@@ -62,7 +67,7 @@ class Hotel
      *
      * @param string $description
      *
-     * @return Hotel
+     * @return Rooms
      */
     public function setDescription($description)
     {
@@ -82,27 +87,51 @@ class Hotel
     }
 
     /**
-     * Set logo
+     * Set seatsCout
      *
-     * @param string $logo
+     * @param integer $seatsCout
      *
-     * @return Hotel
+     * @return Rooms
      */
-    public function setLogo($logo)
+    public function setSeatsCout($seatsCout)
     {
-        $this->logo = $logo;
+        $this->seatsCout = $seatsCout;
 
         return $this;
     }
 
     /**
-     * Get logo
+     * Get seatsCout
      *
-     * @return string
+     * @return integer
      */
-    public function getLogo()
+    public function getSeatsCout()
     {
-        return $this->logo;
+        return $this->seatsCout;
+    }
+
+    /**
+     * Set isactive
+     *
+     * @param boolean $isactive
+     *
+     * @return Rooms
+     */
+    public function setIsactive($isactive)
+    {
+        $this->isactive = $isactive;
+
+        return $this;
+    }
+
+    /**
+     * Get isactive
+     *
+     * @return boolean
+     */
+    public function getIsactive()
+    {
+        return $this->isactive;
     }
 
     /**
@@ -110,7 +139,7 @@ class Hotel
      *
      * @param integer $orderby
      *
-     * @return Hotel
+     * @return Rooms
      */
     public function setOrderby($orderby)
     {
@@ -139,3 +168,4 @@ class Hotel
         return $this->id;
     }
 }
+

@@ -14,18 +14,13 @@ use Login\LoginBundle\Entity\Users;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Login\LoginBundle\Entity\Hotel;
+use Login\LoginBundle\Controller\SecurityController;
+class AdminController extends SecurityController {
 
-class AdminController extends Controller {
+    //public $_commonOptions;
 
-    public $_commonOptions;
-    
     public function __construct() {
-    
-        //parent:__construct();
-        //var_dump($this->getDoctrine());
-//        if (!$this->checkUserAuth())
-//            return $this->redirectToRoute('login_login_homepage');
-        //$this->getDoctrine();
+
     }
 
     public function indexAction() {
@@ -44,6 +39,7 @@ class AdminController extends Controller {
         else {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('LoginLoginBundle:Hotel')->find($id);
+
             if ($repository) {
                 return $this->render('LoginLoginBundle:Pages:hotelEdit.html.twig', array('options' => $this->_commonOptions, 'hotels' => $repository));
             } else
@@ -60,6 +56,7 @@ class AdminController extends Controller {
                 $id = $request->get('id');
                 $title = $request->get('title');
                 $description = $request->get('description');
+
                 $repository = $em->getRepository('LoginLoginBundle:Hotel');
                 $hotel = $repository->find($id);
                 if (!$hotel) {
@@ -99,22 +96,4 @@ class AdminController extends Controller {
             return $this->redirectToRoute('admin_admin_homepage');
         }
     }
-
-    private function checkUserAuth() {
-        $em = $this->getDoctrine()->getManager();
-        $session = new Session();
-        $repository = $em->getRepository('LoginLoginBundle:Users');
-        if ($session->has('login')) {
-            $login = $session->get('login');
-            $email = $login->getEmail();
-            $password = $login->getPassword();
-            $user = $repository->findOneBy(array('email' => $email, 'password' => $password));
-            if ($user) {
-                $this->_commonOptions['userName'] = $user->getName();
-                return true;
-            } else
-                return false;
-        }
-    }
-
 }

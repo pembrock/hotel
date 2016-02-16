@@ -1,22 +1,22 @@
 {% extends "LoginLoginBundle:Pages:index.html.twig" %}
-{% set menu_selected = 'home' %}
+{% set menu_selected = 'rooms' %}
 {% block content %}
     <div class="col-md-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Гостиницы</h3>
-                <a href="{{ path('admin_admin_hotels_edit', {'id': 0}) }}" title="Добавить" class="btn btn-success pull-right">
+                <h3 class="box-title">Номера</h3>
+                <a href="{{ path('admin_admin_rooms_edit', {'id': 0}) }}" title="Добавить" class="btn btn-success pull-right">
                     <i class="fa fa-plus"></i>
                 </a>
             </div>
             <div class="box-body no-padding">
                 <table class="table">
-                    {% for value in hotels %}
+                    {% for value in rooms %}
                         <tr>
                             <td style="width: 10px">{{ loop.index }}.</td>
-                            <td><a href="{{ path('admin_admin_hotels_edit', {'id':value.id}) }}">{{ value.title }}</a></td>
+                            <td><a href="{{ path('admin_admin_rooms_edit', {'id':value.id}) }}">{{ value.title }}</a></td>
                             <td style="width: 10px">
-                                <a href="{{ path('admin_admin_hotels_edit', {'id': value.id}) }}" type="button" class="btn btn-block btn-primary">Редактировать</a>
+                                <a href="{{ path('admin_admin_rooms_edit', {'id': value.id}) }}" type="button" class="btn btn-block btn-primary">Редактировать</a>
                             </td>
                             <td style="width: 10px">
                                 {#<a href="{{ path('admin_admin_hotels_del', {'id': value.id}) }}" type="button" class="btn btn-block btn-danger">Удалить</a>#}
@@ -28,29 +28,6 @@
                     {% endfor %}
                 </table>
             </div>
-            {#<div class="box box-primary">
-              <div class="box-body">
-                <ul class="todo-list ui-sortable">
-                  {% for value in hotels %}
-                  <li>
-                        <span class="handle ui-sortable-handle">
-                          <i class="fa fa-ellipsis-v"></i>
-                          <i class="fa fa-ellipsis-v"></i>
-                        </span>
-                    <span class="text"><a href="{{ path('admin_admin_hotels_edit', {'id':value.id}) }}">{{ value.title }}</a></span>
-                    <div class="tools">
-                      <a href="{{ path('admin_admin_hotels_edit', {'id': value.id}) }}" ><i class="fa fa-edit"></i></a>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer clearfix no-border">
-                <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-              </div>
-            </div>#}
         </div>
     </div>
     <!-- Modal -->
@@ -70,14 +47,5 @@
                 </div>
             </div>
         </div>
-    </div>      
-    <script type="text/javascript">
-        $('#exampleModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var recipient = button.data('whatever');
-            var modal = $(this);
-            modal.find('.del-link').attr('href', "{{ path('admin_admin_hotels_del', {'id': 5}) }}");
-            //modal.find('.modal-body input').val(recipient)
-        });
-    </script>
+    </div>
 {% endblock %}

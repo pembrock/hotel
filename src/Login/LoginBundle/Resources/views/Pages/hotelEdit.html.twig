@@ -1,4 +1,6 @@
 {% extends "LoginLoginBundle:Pages:index.html.twig" %}
+{% set menu_selected = 'home' %}
+
 {% block content %}
     <div class="box box-info">
         <div class="box-header with-border">
@@ -10,9 +12,12 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" method="POST" action="{{ path("admin_admin_hotels_save") }}">
+        <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ path("admin_admin_hotels_save") }}">
             <input type="hidden" name="id" id="id" value="{% if hotels is defined %}{{ hotels.id }}{% else %}0{% endif %}">
             <div class="box-body">
+                {% if error is defined  %}
+                    {{ error }}
+                {% endif %}
                 <div class="form-group">
                     <label for="title" class="col-sm-2 control-label">Название</label>
                     <div class="col-sm-6">
@@ -30,7 +35,7 @@
                 <div class="form-group">
                     <label for="logo" class="col-sm-2 control-label">Логотип</label>
                     <div class="col-sm-8">
-                        <input type="file" class="form-control" id="logo">
+                        <input type="file" name="logo" class="form-control" id="logo">
                     </div>
                 </div>
             </div>

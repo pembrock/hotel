@@ -10,7 +10,6 @@ admin_admin_homepage:
     path:     /admin
     defaults: { _controller: LoginLoginBundle:Admin:index}
 
-
 admin_admin_hotels_edit:
     path:     /admin/hotels/{id}
     defaults: { _controller: LoginLoginBundle:Admin:edit}
@@ -26,3 +25,17 @@ admin_admin_hotels_del:
     defaults:   { _controller: LoginLoginBundle:Admin:del}
     requirements:
         id: \d+
+
+admin_admin_rooms:
+    path:     /admin/rooms
+    defaults: { _controller: LoginLoginBundle:Rooms:index}
+
+admin_admin_rooms_edit:
+    path:   /admin/rooms/{id}
+    defaults: { _controller: LoginLoginBundle:Rooms:edit}
+    requirements:
+        id: \d+
+
+admin_admin_rooms_save:
+        path: /admin/rooms
+        defaults: { _controller: LoginLoginBundle:Rooms:save}
