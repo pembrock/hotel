@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Login\LoginBundle\Entity\Promo" table="promo">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="title" type="string" column="title" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="text" type="text" column="text" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="startTs" type="datetime" column="start_ts" nullable="false">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
+    <field name="stopTs" type="datetime" column="stop_ts" nullable="false">
+      <options>
+        <option name="default">0000-00-00 00:00:00</option>
+      </options>
+    </field>
+    <field name="isactive" type="boolean" column="isActive" nullable="false">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

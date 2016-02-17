@@ -9,13 +9,24 @@
 namespace Login\LoginBundle\Controller;
 
 
-use Login\LoginBundle\Entity\Rooms;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Login\LoginBundle\Entity\Users;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Login\LoginBundle\Entity\Rooms;
 use Login\LoginBundle\Controller\SecurityController;
+
 class RoomsController extends SecurityController
 {
-    public function indexAction()
-    {
+
+
+    //public $_commonOptions;
+
+    public function __construct() {
+
+    }
+
+    public function indexAction() {
         if (!$this->checkUserAuth())
             return $this->redirectToRoute('login_login_homepage');
         else {
@@ -50,26 +61,27 @@ class RoomsController extends SecurityController
                 $description = $request->get('description');
                 $seats_count = $request->get('seatscount');
                 $isActive = $request->get('isactive');
-
-                $repository = $em->getRepository('LoginLoginBundle:Hotel');
-                $rooms = $repository->find($id);
-                if (!$rooms) {
-                    $rooms = new Rooms();
-                    $rooms->setOrderby(0);
+                $repository = $em->getRepository('LoginLoginBundle:Rooms');
+                $room = $repository->find($id);
+                if (!$room) {
+                    $room = new Rooms();
+                    $room->setOrderby(0);
                 }
 
-                $rooms->setTitle($title);
-                $rooms->setDescription($description);
+                $room->setTitle($title);
+                $room->setDescription($description);
+                $room->setSeatsCout($seats_count);
+                $room->setIsactive($isActive == 1 ? 1 : 0);
 
-                $em->persist($rooms);
+                $em->persist($room);
                 $em->flush();
-                if ($rooms->getOrderby() == 0) {
+                if ($room->getOrderby() == 0) {
                     $ordby = $em->getRepository('LoginLoginBundle:Rooms')->findOneBy(array(), array('orderby' => 'DESC'));
-                    $rooms->setOrderby($ordby->getOrderby() + 1);
-                    $em->persist($rooms);
+                    $room->setOrderby($ordby->getOrderby() + 1);
+                    $em->persist($room);
                     $em->flush();
                 }
-                $insert_id = $rooms->getId();
+                $insert_id = $room->getId();
 
 
                 return $this->redirectToRoute('admin_admin_rooms_edit', array('id' => $insert_id), 301);
@@ -83,11 +95,11 @@ class RoomsController extends SecurityController
             return $this->redirectToRoute('login_login_homepage');
         else {
             $em = $this->getDoctrine()->getManager();
-            $hotel = $em->getRepository('LoginLoginBundle:Hotel')->find($id);
-            $em->remove($hotel);
+            $room = $em->getRepository('LoginLoginBundle:Rooms')->find($id);
+            $em->remove($room);
             $em->flush();
 
-            return $this->redirectToRoute('admin_admin_homepage');
+            return $this->redirectToRoute('admin_admin_rooms');
         }
     }
 

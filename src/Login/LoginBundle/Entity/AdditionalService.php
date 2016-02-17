@@ -3,9 +3,9 @@
 namespace Login\LoginBundle\Entity;
 
 /**
- * Rooms
+ * AdditionalService
  */
-class Rooms
+class AdditionalService
 {
     /**
      * @var string
@@ -18,9 +18,9 @@ class Rooms
     private $description;
 
     /**
-     * @var integer
+     * @var string
      */
-    private $seatsCout = '0';
+    private $logo;
 
     /**
      * @var boolean
@@ -43,7 +43,7 @@ class Rooms
      *
      * @param string $title
      *
-     * @return Rooms
+     * @return AdditionalService
      */
     public function setTitle($title)
     {
@@ -67,7 +67,7 @@ class Rooms
      *
      * @param string $description
      *
-     * @return Rooms
+     * @return AdditionalService
      */
     public function setDescription($description)
     {
@@ -87,27 +87,27 @@ class Rooms
     }
 
     /**
-     * Set seatsCout
+     * Set logo
      *
-     * @param integer $seatsCout
+     * @param string $logo
      *
-     * @return Rooms
+     * @return AdditionalService
      */
-    public function setSeatsCout($seatsCout)
+    public function setLogo($logo)
     {
-        $this->seatsCout = $seatsCout;
+        $this->logo = $logo;
 
         return $this;
     }
 
     /**
-     * Get seatsCout
+     * Get logo
      *
-     * @return integer
+     * @return string
      */
-    public function getSeatsCout()
+    public function getLogo()
     {
-        return $this->seatsCout;
+        return $this->logo;
     }
 
     /**
@@ -115,7 +115,7 @@ class Rooms
      *
      * @param boolean $isactive
      *
-     * @return Rooms
+     * @return AdditionalService
      */
     public function setIsactive($isactive)
     {
@@ -139,7 +139,7 @@ class Rooms
      *
      * @param integer $orderby
      *
-     * @return Rooms
+     * @return AdditionalService
      */
     public function setOrderby($orderby)
     {

@@ -37,5 +37,59 @@ admin_admin_rooms_edit:
         id: \d+
 
 admin_admin_rooms_save:
-        path: /admin/rooms
+        path: /admin/rooms/save
         defaults: { _controller: LoginLoginBundle:Rooms:save}
+
+admin_admin_rooms_del:
+    path:   /admin/rooms/del/{id}
+    defaults: { _controller: LoginLoginBundle:Rooms:del}
+    requirements:
+        id: \d+
+
+admin_admin_additional:
+    path: /admin/additional
+    defaults: { _controller: LoginLoginBundle:Additional:index}
+
+admin_admin_additional_edit:
+    path: /admin/additional/edit/{id}
+    defaults: { _controller: LoginLoginBundle:Additional:edit}
+    requirements:
+        id: \d+
+
+admin_admin_additional_save:
+    path: /admin/additional/save
+    defaults: { _controller: LoginLoginBundle:Additional:save}
+
+admin_admin_additional_del:
+    path: /admin/additional/del/{id}
+    defaults: { _controller: LoginLoginBundle:Additional:del}
+    requirements:
+        id: \d+
+
+admin_admin_rates_room:
+    path: /admin/rates/room
+    defaults: { _controller: LoginLoginBundle:RatesRoom:index}
+
+admin_admin_rates_service:
+    path: /admin/rates/service
+    defaults: { _controller: LoginLoginBundle:RatesService:index}
+
+admin_admin_promo:
+    path: /admin/promo
+    defaults: { _controller: LoginLoginBundle:Promo:index}
+
+admin_admin_promo_edit:
+    path: /admin/promo/edit/{id}
+    defaults: { _controller: LoginLoginBundle:Promo:edit}
+    requirements:
+        id: \d+
+
+admin_admin_promo_save:
+    path: /admin/promo/save
+    defaults: { _controller: LoginLoginBundle:Promo:save}
+
+admin_admin_promo_del:
+    path: /admin/promo/del/{id}
+    defaults: { _controller: LoginLoginBundle:Promo:del}
+    requirements:
+        id: \d+
