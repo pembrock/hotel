@@ -93,3 +93,20 @@ admin_admin_promo_del:
     defaults: { _controller: LoginLoginBundle:Promo:del}
     requirements:
         id: \d+
+        
+admin_admin_role:
+    path: /admin/role
+    defaults: { _controller: LoginLoginBundle:Role:index}
+    
+admin_admin_role_edit:
+    path: /admin/role/edit/{id}
+    defaults: { _controller: LoginLoginBundle:Role:edit}
+    requirements:
+        id: \d+
+admin_admin_role_save:
+    path: /admin/role/save
+    defaults: { _controller: LoginLoginBundle:Role:save}
+    
+admin_admin_role_del:
+    path: /admin/role/del
+    defaults: { _controller: LoginLoginBundle:Role:del}

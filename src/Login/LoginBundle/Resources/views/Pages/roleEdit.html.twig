@@ -1,0 +1,51 @@
+{% extends "LoginLoginBundle:Pages:index.html.twig" %}
+{% set menu_selected = 'role' %}
+
+{% block content %}
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('admin_admin_role') }}"><i class="fa fa-key"></i> Роли</a></li>
+                <li class="active">{% if role is defined %}{{ role.name }}{% else %}Новая роль{% endif %}</li>
+            </ol>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ path("admin_admin_role_save") }}">
+            <input type="hidden" name="id" id="id" value="{% if role is defined %}{{ role.id }}{% else %}0{% endif %}">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Название</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="name" id="title" placeholder="Название" value="{% if role is defined %}{{ role.name }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="isEnabled" class="col-sm-2 control-label">Активно</label>
+                    <div class="col-sm-6">
+                        <input type="checkbox" class="form-control-static" name="isEnabled" id="isEnabled" value="1" {% if role is defined %}{% if role.isEnabled == 1 %} checked {% endif %}{% endif %} style="width: 25px;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descr" class="col-sm-2 control-label">Описание</label>
+                    <div class="col-sm-6">
+                        <textarea name="descr" id="editor1" rows="10" cols="80">
+                            {% if service is defined %}{{ service.description }}{% endif %}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sys" class="col-sm-2 control-label">Системное имя</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="sys" id="sys" placeholder="Системное имя" value="{% if role is defined %}{{ role.sys }}{% endif %}">
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <!-- /.box-footer -->
+            <div class="box-footer">
+                <button type="submit" class="btn btn-success" name="save" id="save">Сохранить</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -7,7 +7,7 @@
         <!-- Logo -->
         <a href="index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>H</b>OL</span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>Hotel</b>HOL</span>
         </a>
@@ -96,7 +96,7 @@
                         <i class="fa fa-thumbs-o-up"></i> <span>Специальные предложения</span>
                     </a>
                 </li>
-                <li class="treeview">
+                <li class="treeview {% if menu_selected == 'role' %} active{% endif %}">
                     <a href="#">
                         <i class="fa fa-cog"></i> <span>Настройки</span>
                         <i class="fa fa-angle-left pull-right"></i>
@@ -104,7 +104,7 @@
                     <ul class="treeview-menu">
                         <li><a href="pages/forms/advanced.html"><i class="fa fa-laptop"></i> Основные настройки сайта</a></li>
                         <li><a href="pages/forms/general.html"><i class="fa fa-user-plus"></i> Пользователи</a></li>
-                        <li><a href="pages/forms/editors.html"><i class="fa fa-key"></i> Роли</a></li>
+                        <li {% if menu_selected == 'role' %}class="active"{% endif %}><a href="{{ path('admin_admin_role') }}"><i class="fa fa-key"></i> Роли</a></li>
                         <li><a href="pages/forms/editors.html"><i class="fa fa-users"></i> Группы пользователей</a></li>
                     </ul>
                 </li>
